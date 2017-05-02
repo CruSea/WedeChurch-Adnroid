@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.gcme.wedechurch">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:name="com.gcme.wedechurch.app.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/app_logo"
+        android:label="@string/app_name"
+        android:theme="@style/MyMaterialTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+
+             android:name="com.gcme.wedechurch.AppActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity android:name="com.gcme.wedechurch.Intro.IntroActivity"
+            android:label="@string/app_intro" />
+
+
+        <activity
+            android:name=".Login.LoginActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".Login.SignupActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_feeds"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Login.RecoveryActivity"
+            android:label="@string/title_activity_recovery"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".WebViewActivity"
+            android:label="@string/title_activity_web_view" />
+        <activity
+            android:name=".Login.ChangePasswordActivity"
+            android:label="@string/title_activity_change_password"
+            android:windowSoftInputMode="stateHidden" />
+
+        <service
+            android:name=".service.RegistrationIntentService"
+            android:exported="false" />
+
+        <service
+            android:name="com.gcme.wedechurch.service.RegistrationIntentService"
+            android:exported="false" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+    </application>
+
+</manifest>
