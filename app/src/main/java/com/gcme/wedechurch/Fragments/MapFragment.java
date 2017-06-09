@@ -254,6 +254,8 @@ public class MapFragment extends Fragment implements PermissionsFragment{
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_map, container, false);
+
+
         View bottomSheet = v.findViewById( R.id.bottom_sheet );
         mMapView = (MapView) v.findViewById(R.id.mapView1);
         loadingIndicator = (ProgressBar) v.findViewById(R.id.maploadingindicator);
@@ -314,7 +316,7 @@ public class MapFragment extends Fragment implements PermissionsFragment{
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabTextColors(getResources().getColorStateList(R.color.white));
         initUI(v, inflater, container, savedInstanceState);
-
+        setHasOptionsMenu(true);
         return v;
 
     }
@@ -408,57 +410,57 @@ public class MapFragment extends Fragment implements PermissionsFragment{
     }
 
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        @Override
+        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
-//        MenuInflater menuInflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.menu_search, menu);
+    //        MenuInflater menuInflater = getActivity().getMenuInflater();
+            inflater.inflate(R.menu.menu_search, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.search);
+            MenuItem searchItem = menu.findItem(R.id.search);
 
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+            SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
 
-        if (searchItem != null) {
+            if (searchItem != null) {
 
-            searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+                searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+            }
+
+            if (searchView != null) {
+
+                searchView.setQuery(queryText, false);
+
+                searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+                searchView.setIconifiedByDefault(false);
+                searchView.setIconified(false);
+
+                SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+                searchAutoComplete.setHint(getText(R.string.placeholder_search));
+                searchAutoComplete.setHintTextColor(getResources().getColor(R.color.white));
+
+                searchView.clearFocus();
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+
+                        queryText = newText;
+
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+
+                        queryText = query;
+                        searchStart();
+
+                        return false;
+                    }
+                });
+            }
+
+            super.onCreateOptionsMenu(menu, inflater);
         }
-
-        if (searchView != null) {
-
-            searchView.setQuery(queryText, false);
-
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-            searchView.setIconifiedByDefault(false);
-            searchView.setIconified(false);
-
-            SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-            searchAutoComplete.setHint(getText(R.string.placeholder_search));
-            searchAutoComplete.setHintTextColor(getResources().getColor(R.color.white));
-
-            searchView.clearFocus();
-
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextChange(String newText) {
-
-                    queryText = newText;
-
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-
-                    queryText = query;
-                    searchStart();
-
-                    return false;
-                }
-            });
-        }
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 
 
     public void searchStart() {

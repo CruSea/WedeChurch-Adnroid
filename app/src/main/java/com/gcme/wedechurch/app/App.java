@@ -1,6 +1,5 @@
 package com.gcme.wedechurch.app;
 
-import android.Manifest;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -63,7 +62,7 @@ public class App extends Application implements Constants {
         mInstance = this;
         MultiDex.install(this);
         sharedPref = this.getSharedPreferences(getString(R.string.settings_file), Context.MODE_PRIVATE);
-
+//        SugarContext.init(this);
         this.readData();
 
 //        getLocation();
@@ -676,5 +675,9 @@ public class App extends Application implements Constants {
 		}
 	}
 
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
 
 }

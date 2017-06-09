@@ -1,6 +1,5 @@
 package com.gcme.wedechurch;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.RelativeLayout;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.gcme.wedechurch.Login.*;
 import com.gcme.wedechurch.app.App;
 import com.gcme.wedechurch.common.ActivityBase;
 import com.gcme.wedechurch.service.RegistrationIntentService;
@@ -25,10 +23,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.gcme.wedechurch.constants.Constants.ACCOUNT_STATE_ENABLED;
-import static com.gcme.wedechurch.constants.Constants.CLIENT_ID;
-import static com.gcme.wedechurch.constants.Constants.METHOD_ACCOUNT_AUTHORIZE;
 
 
 public class AppActivity extends ActivityBase {
@@ -83,7 +77,7 @@ public class AppActivity extends ActivityBase {
             @Override
             public void onClick(View view) {
 
-                Intent i = new Intent(AppActivity.this, com.gcme.wedechurch.Login.LoginActivity.class);
+                Intent i = new Intent(AppActivity.this, com.gcme.wedechurch.login.LoginActivity.class);
                 startActivity(i);
             }
         });

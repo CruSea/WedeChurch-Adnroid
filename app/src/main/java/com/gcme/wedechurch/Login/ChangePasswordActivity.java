@@ -1,4 +1,4 @@
-package com.gcme.wedechurch.Login;
+package com.gcme.wedechurch.login;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

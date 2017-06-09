@@ -1,14 +1,16 @@
-package com.gcme.wedechurch.Objects;
+package com.gcme.wedechurch.model;
 
 import android.support.annotation.Keep;
+
+import com.orm.SugarRecord;
 
 /**
  * Created by kzone on 2/4/2017.
  */
 
 @Keep
-public class Church {
-    private int id;
+public class Church extends SugarRecord<Church> {
+    private int sirid;
     private String churchName;
     private String country;
     private String cities;
@@ -23,17 +25,16 @@ public class Church {
     private String logo;
     private String parentChurchId;
     private String state;
+    Denomination denomination;
+    Schedule schedule;
 
-    public Church(){
 
-    }
-
-    public int getId() {
-        return id;
+    public int getsirId() {
+        return sirid;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.sirid = id;
     }
 
     public String getChurchName() {
@@ -146,5 +147,21 @@ public class Church {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Denomination getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(Denomination denomination) {
+        this.denomination = denomination;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 }

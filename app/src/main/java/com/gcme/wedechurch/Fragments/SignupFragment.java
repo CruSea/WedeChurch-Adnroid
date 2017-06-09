@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.gcme.wedechurch.Login.LoginActivity;
+import com.gcme.wedechurch.login.LoginActivity;
 import com.gcme.wedechurch.MainActivity;
 import com.gcme.wedechurch.R;
 import com.gcme.wedechurch.WebViewActivity;

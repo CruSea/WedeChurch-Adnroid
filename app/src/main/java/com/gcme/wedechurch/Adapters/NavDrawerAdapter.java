@@ -1,4 +1,4 @@
-package com.gcme.wedechurch.Adapters;
+package com.gcme.wedechurch.adapters;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -180,7 +180,7 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
             } else {
 
 
-                holder.userCover.setImageResource(R.drawable.header_logo);
+                holder.userCover.setImageResource(R.drawable.wedechurch_icon);
                 holder.userCover.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 holder.userCover.setVisibility(View.VISIBLE);
 

@@ -14,12 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-import com.gcme.wedechurch.Fragments.ChurchDemominations;
+import com.gcme.wedechurch.Fragments.allDenomination;
 import com.gcme.wedechurch.Fragments.Events;
-import com.gcme.wedechurch.Fragments.FragmentDrawer;
+import com.gcme.wedechurch.Fragments.fragmentDrawer;
 import com.gcme.wedechurch.Fragments.MapFragment;
 import com.gcme.wedechurch.Fragments.Profile;
-import com.gcme.wedechurch.Intro.IntroActivity;
+import com.gcme.wedechurch.intro.IntroActivity;
 import com.gcme.wedechurch.common.ActivityBase;
 import com.gcme.wedechurch.dialogs.CoverChooseDialog;
 import com.gcme.wedechurch.dialogs.PhotoChooseDialog;
@@ -27,11 +27,11 @@ import com.gcme.wedechurch.dialogs.PopularSettingsDialog;
 import com.gcme.wedechurch.dialogs.ProfileReportDialog;
 
 
-public class MainActivity extends ActivityBase implements FragmentDrawer.FragmentDrawerListener, PhotoChooseDialog.AlertPositiveListener, CoverChooseDialog.AlertPositiveListener, ProfileReportDialog.AlertPositiveListener, PopularSettingsDialog.AlertPositiveListener {
+public class MainActivity extends ActivityBase implements fragmentDrawer.FragmentDrawerListener, PhotoChooseDialog.AlertPositiveListener, CoverChooseDialog.AlertPositiveListener, ProfileReportDialog.AlertPositiveListener, PopularSettingsDialog.AlertPositiveListener {
 
     Toolbar mToolbar;
 
-    private FragmentDrawer drawerFragment;
+    private fragmentDrawer drawerFragment;
     private SearchView searchview;
 
     // used to store app title
@@ -79,7 +79,7 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(mTitle);
 
-        drawerFragment = (FragmentDrawer) getFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment = (fragmentDrawer) getFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
@@ -130,7 +130,7 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
         getSupportActionBar().setTitle(mTitle);
 
 
-        drawerFragment = (FragmentDrawer) getFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment = (fragmentDrawer) getFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
@@ -188,6 +188,7 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
 
                 case "settings": {
 
+                    displayView(6);
 //                    Intent i = new Intent(MainActivity.this, SettingsActivity.class);
 //                    startActivity(i);
 
@@ -278,7 +279,7 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
 
                 page = 2;
 
-                fragment = new ChurchDemominations();
+                fragment = new allDenomination();
                 getSupportActionBar().setTitle(R.string.page_2);
 
                 action = true;
@@ -301,14 +302,22 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
 
             case 4: {
 
-//                page = 4;
+                page = 4;
+//                fragment = new favorites();
+//                getSupportActionBar().setTitle(R.string.page_4);
+//
+//                action = true;
+//
+//                Intent i = new Intent(MainActivity.this, singleDenomination.class);
+//                startActivity(i);
+                action = true;
 //
 //                fragment = new PopularFragment();
 //                getSupportActionBar().setTitle(R.string.page_4);
 //
 //                action = true;
 //
-//                break;
+                break;
             }
 
             case 5: {
@@ -323,6 +332,12 @@ public class MainActivity extends ActivityBase implements FragmentDrawer.Fragmen
             }
 
             case 6: {
+
+//                Intent i = new Intent(MainActivity.this, singleDenomination.class);
+//                startActivity(i);
+                action = true;
+
+
 
 //                if (App.getInstance().getId() != 0){
 //

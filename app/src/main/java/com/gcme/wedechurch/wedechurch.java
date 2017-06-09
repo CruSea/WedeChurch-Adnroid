@@ -28,4 +28,6 @@ public class wedechurch extends Application {
         return strArr;
     }
 
+
+
 }

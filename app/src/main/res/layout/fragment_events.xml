@@ -3,11 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.gcme.wedechurch.Fragments.Events">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
+        android:id="@+id/event_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

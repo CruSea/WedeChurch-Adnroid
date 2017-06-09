@@ -12,10 +12,10 @@ import com.gcme.wedechurch.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChurchDemominations extends Fragment {
+public class favorites extends Fragment {
 
 
-    public ChurchDemominations() {
+    public favorites() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class ChurchDemominations extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_church_demominations, container, false);
+        return inflater.inflate(R.layout.fragment_favorites, container, false);
     }
 
 }

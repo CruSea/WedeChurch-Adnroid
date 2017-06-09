@@ -1,4 +1,4 @@
-package com.gcme.wedechurch.Login;
+package com.gcme.wedechurch.login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

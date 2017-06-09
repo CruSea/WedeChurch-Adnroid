@@ -1,36 +1,22 @@
-package com.gcme.wedechurch.Objects;
+package com.gcme.wedechurch.model;
+
+import com.orm.SugarRecord;
 
 /**
  * Created by kzone on 3/6/2017.
  */
 
-public class Schedule {
+public class Schedule extends SugarRecord<Schedule> {
 
-    private int id ;
+    private int sirid ;
     private String churchId;
-    private String date;
-    private String startingTime;
-    private String endTime;
 
-
-    public Schedule(){
-
+    public int getSirid() {
+        return sirid;
     }
 
-    public String getRedundancy() {
-        return redundancy;
-    }
-
-    public void setRedundancy(String redundancy) {
-        this.redundancy = redundancy;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setSirid(int sirid) {
+        this.sirid = sirid;
     }
 
     public String getChurchId() {
@@ -65,6 +51,14 @@ public class Schedule {
         this.endTime = endTime;
     }
 
+    public String getRedundancy() {
+        return redundancy;
+    }
+
+    public void setRedundancy(String redundancy) {
+        this.redundancy = redundancy;
+    }
+
     public String getScheduleCategoryId() {
         return scheduleCategoryId;
     }
@@ -73,6 +67,9 @@ public class Schedule {
         this.scheduleCategoryId = scheduleCategoryId;
     }
 
+    private String date;
+    private String startingTime;
+    private String endTime;
     private String redundancy;
     private String scheduleCategoryId;
 

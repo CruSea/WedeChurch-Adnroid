@@ -1,4 +1,4 @@
-package com.gcme.wedechurch.Intro;
+package com.gcme.wedechurch.intro;
 
 
 import android.content.Intent;
@@ -8,10 +8,10 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.gcme.wedechurch.Intro.slides.FirstSlide;
-import com.gcme.wedechurch.Intro.slides.FourthSlide;
-import com.gcme.wedechurch.Intro.slides.SecondSlide;
-import com.gcme.wedechurch.Intro.slides.ThirdSlide;
+import com.gcme.wedechurch.intro.slides.FirstSlide;
+import com.gcme.wedechurch.intro.slides.FourthSlide;
+import com.gcme.wedechurch.intro.slides.SecondSlide;
+import com.gcme.wedechurch.intro.slides.ThirdSlide;
 import com.gcme.wedechurch.MainActivity;
 import com.gcme.wedechurch.R;
 import com.github.paolorotolo.appintro.AppIntro;

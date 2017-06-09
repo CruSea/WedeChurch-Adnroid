@@ -1,4 +1,4 @@
-package com.gcme.wedechurch.Intro.slides;
+package com.gcme.wedechurch.intro.slides;
 
 /**
  * Created by kzone on 4/25/2017.

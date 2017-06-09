@@ -17,15 +17,13 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 
-import com.gcme.wedechurch.Adapters.NavDrawerAdapter;
+import com.gcme.wedechurch.adapters.NavDrawerAdapter;
 import com.gcme.wedechurch.R;
 
-import java.util.ArrayList;
 
+public class fragmentDrawer extends Fragment {
 
-public class FragmentDrawer extends Fragment {
-
-    private static String TAG = FragmentDrawer.class.getSimpleName();
+    private static String TAG = fragmentDrawer.class.getSimpleName();
 
     private RecyclerView recyclerView;
     private RelativeLayout mNavHeaderContainer;
@@ -39,7 +37,7 @@ public class FragmentDrawer extends Fragment {
     String navTitles[];
     public TypedArray navIcons;
 
-    public FragmentDrawer() {
+    public fragmentDrawer() {
 
     }
 
