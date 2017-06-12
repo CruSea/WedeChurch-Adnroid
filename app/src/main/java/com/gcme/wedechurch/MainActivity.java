@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.gcme.wedechurch.Fragments.allDenomination;
 import com.gcme.wedechurch.Fragments.Events;
+import com.gcme.wedechurch.Fragments.favorites;
 import com.gcme.wedechurch.Fragments.fragmentDrawer;
 import com.gcme.wedechurch.Fragments.MapFragment;
 import com.gcme.wedechurch.Fragments.Profile;
@@ -303,10 +304,10 @@ public class MainActivity extends ActivityBase implements fragmentDrawer.Fragmen
             case 4: {
 
                 page = 4;
-//                fragment = new favorites();
-//                getSupportActionBar().setTitle(R.string.page_4);
-//
-//                action = true;
+                fragment = new favorites();
+                getSupportActionBar().setTitle(R.string.page_4);
+
+                action = true;
 //
 //                Intent i = new Intent(MainActivity.this, singleDenomination.class);
 //                startActivity(i);

@@ -1,6 +1,7 @@
 package com.gcme.wedechurch.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.gcme.wedechurch.R;
+import com.gcme.wedechurch.activities.selectedDenomination;
+import com.gcme.wedechurch.activities.singleChurchDetail;
 import com.gcme.wedechurch.model.denominationchurchs;
 
 import java.util.ArrayList;
@@ -68,7 +71,7 @@ public class denominationchurchsadaptor extends BaseAdapter  {
 
 
 
-			denominationchurchs dm = mDummyModelList.get(position);
+			final denominationchurchs dm = mDummyModelList.get(position);
 		    String url = dm.getDenochurchimageUrl();
 		    Glide.with(mContext)
 				.load(url)
@@ -79,7 +82,28 @@ public class denominationchurchsadaptor extends BaseAdapter  {
 
 			holder.churchlocation.setText(dm.getLocation());
 
+		holder. image .setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+
+
+				passdata(dm.getchId());
+
+
+
+			}
+		});
+
+
 		return convertView;
+	}
+	private void passdata(long churchId) {
+
+		Intent i=new Intent(mContext,singleChurchDetail.class);
+		i.putExtra("selectedchurchid",churchId);
+
+		mContext.startActivity(i);
 	}
 
 	private static class ViewHolder {

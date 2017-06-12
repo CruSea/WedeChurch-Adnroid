@@ -3,6 +3,7 @@ package com.gcme.wedechurch.activities;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -17,12 +18,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
+import com.bumptech.glide.Glide;
 import com.gcme.wedechurch.R;
+import com.gcme.wedechurch.model.denominationchurchs;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.gcme.wedechurch.Fragments.MapFragment.context;
 
 public class singleChurchDetail extends AppCompatActivity {
     public static GoogleMap mMap;
@@ -47,6 +52,9 @@ public class singleChurchDetail extends AppCompatActivity {
     RecyclerView recyclerView;
     ListView scheduleList;
     FloatingActionButton Detailgetdirection;
+    ImageView ToolbarChurchImage;
+    Toolbar toolbar;
+
 //    List<EventHandler> feedsList = new ArrayList<EventHandler>();
 //    RecyclerEventAdapter adapter;
     public singleChurchDetail() {
@@ -59,6 +67,16 @@ public class singleChurchDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_churchdetail);
+        ToolbarChurchImage= (ImageView) findViewById(R.id.churchheaderimage);
+        Intent intent = getIntent();
+        Bundle bd = intent.getExtras();
+        toolbar = (Toolbar) findViewById(R.id.churchtoolbar);
+        if(bd != null)
+        {
+            long churchid  = bd.getLong("selectedchurchid");
+
+            populatedatausingid(churchid);
+        }
 
 
 //        if(getArguments().getString("Key")!=null) {
@@ -292,10 +310,47 @@ public class singleChurchDetail extends AppCompatActivity {
 
     }
 
+    private void populatedatausingid(long churchid) {
+
+        ArrayList<denominationchurchs> churcdata=getallchurchList();
 
 
 
+        for( denominationchurchs a : churcdata) {
+// or equalsIgnoreCase or whatever your conditon is
+            if (a.getchId()==churchid) {
+
+               String churchimageurl= a.getDenochurchimageUrl();
+                String churchname=a.getNameChurchs();
+
+                populatedata(churchimageurl,churchname);
+            }
+    }
+    }
+
+    private void populatedata(String churchimageurl,String churchname) {
+
+
+        toolbar.setTitle(churchname);
+        Glide.with(context)
+                .load(churchimageurl)
+                .asBitmap()
+                .placeholder(R.mipmap.app_logo_png)
+                .into(ToolbarChurchImage);
 
 
 
+    }
+
+    public static ArrayList<denominationchurchs> getallchurchList() {
+        ArrayList<denominationchurchs> list = new ArrayList<>();
+
+        list.add(new denominationchurchs(1,"Bole MKC","Bole", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/0.jpg"));
+        list.add(new denominationchurchs(2,"Yeka MKC","Yeka","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/1.jpg"));
+        list.add(new denominationchurchs(3,"Kazanchis MKC","Kazanchis", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/2.jpg"));
+        list.add(new denominationchurchs(4,"Semit MKC","Semit", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/3.jpg"));
+        list.add(new denominationchurchs(5,"Piassa MKC","Piassa", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg"));
+
+        return list;
+    }
 }
