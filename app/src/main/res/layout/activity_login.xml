@@ -73,11 +73,24 @@
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="20dp"
             android:textColor="@color/white"
             android:text="@string/no_account"
             android:gravity="center"
             android:textSize="16dip"/>
+        <TextView
+            android:id="@+id/link_skip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:text="SKIP LOGIN"
+            android:gravity="center"
+            android:textSize="16dip"/>
+
 
     </LinearLayout>
 </ScrollView>
+

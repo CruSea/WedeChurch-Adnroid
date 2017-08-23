@@ -47,11 +47,11 @@ public class Events extends Fragment {
 
     public static ArrayList<eventchurchs> getchurchList() {
         ArrayList<eventchurchs> list = new ArrayList<>();
-        list.add(new eventchurchs(1,"Yougo Blaze conference","10:30", "7/12/2017","Youth","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/1.jpg"));
-        list.add(new eventchurchs(2,"beza Arise Africa","7:30","8/6/2017","Confrence","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg"));
-        list.add(new eventchurchs(3,"Greatcommison Outreach","5:30","5/12/2017","Gospel", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/2.jpg"));
-        list.add(new eventchurchs(4,"Beki music consort","11:00","4/12/2017","Song Consort", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/3.jpg"));
-        list.add(new eventchurchs(5,"Rinald Bonke Confrence","2:00","17/2/2017","Gospel", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg"));
+        list.add(new eventchurchs(1,"Yougo Blaze conference","10:30", "7/12/2017","Youth","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/1.jpg","this is the event description","bole","38.828731","8.991639"));
+        list.add(new eventchurchs(2,"beza Arise Africa","7:30","8/6/2017","Confrence","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg","this is the event description","bole","38.828731","8.991639"));
+        list.add(new eventchurchs(3,"Greatcommison Outreach","5:30","5/12/2017","Gospel", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/2.jpg","this is the event description","bole","38.828731","8.991639"));
+        list.add(new eventchurchs(4,"Beki music consort","11:00","4/12/2017","Song Consort", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/3.jpg","this is the event description","bole","38.828731","8.991639"));
+        list.add(new eventchurchs(5,"Rinald Bonke Confrence","2:00","17/2/2017","Gospel", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg","this is the event description","bole","38.828731","8.991639"));
         return list;
     }
 

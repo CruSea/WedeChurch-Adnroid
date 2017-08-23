@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.gcme.wedechurch.R;
@@ -49,7 +50,7 @@ public class denominationchurchsadaptor extends BaseAdapter  {
 
 	@Override
 	public long getItemId(int position) {
-		return mDummyModelList.get(position).getchId();
+		return Long.parseLong(mDummyModelList.get(position).getchId());
 	}
 
 
@@ -67,6 +68,8 @@ public class denominationchurchsadaptor extends BaseAdapter  {
 						.findViewById(R.id.churchname);
 				holder.churchlocation = (TextView) convertView
 						.findViewById(R.id.churchlocation);
+				holder.churchlistholder = (LinearLayout) convertView
+						.findViewById(R.id.churchlistholder);
 
 
 
@@ -82,13 +85,13 @@ public class denominationchurchsadaptor extends BaseAdapter  {
 
 			holder.churchlocation.setText(dm.getLocation());
 
-		holder. image .setOnClickListener(new View.OnClickListener() {
+		holder. churchlistholder .setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 
 
 
-				passdata(dm.getchId());
+				passdata(Integer.parseInt(dm.getchId()));
 
 
 
@@ -98,7 +101,7 @@ public class denominationchurchsadaptor extends BaseAdapter  {
 
 		return convertView;
 	}
-	private void passdata(long churchId) {
+	private void passdata(int churchId) {
 
 		Intent i=new Intent(mContext,singleChurchDetail.class);
 		i.putExtra("selectedchurchid",churchId);
@@ -108,6 +111,7 @@ public class denominationchurchsadaptor extends BaseAdapter  {
 
 	private static class ViewHolder {
 		public ImageView image;
+		public LinearLayout churchlistholder;
 		public/* Roboto */TextView churchname;
 		public/* Roboto */TextView churchlocation;
 	}

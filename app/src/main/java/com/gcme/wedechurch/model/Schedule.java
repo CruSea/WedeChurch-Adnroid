@@ -1,15 +1,26 @@
 package com.gcme.wedechurch.model;
 
+import java.io.Serializable;
 import com.orm.SugarRecord;
-
+import com.orm.dsl.Unique;
 /**
  * Created by kzone on 3/6/2017.
  */
 
-public class Schedule extends SugarRecord<Schedule> {
+public class Schedule  {
 
+    @Unique
     private int sirid ;
     private String churchId;
+    private String date;
+    private String startingTime;
+    private String endTime;
+    private String redundancy;
+    private String scheduleCategoryId;
+
+
+    public Schedule() {
+    }
 
     public int getSirid() {
         return sirid;
@@ -66,12 +77,6 @@ public class Schedule extends SugarRecord<Schedule> {
     public void setScheduleCategoryId(String scheduleCategoryId) {
         this.scheduleCategoryId = scheduleCategoryId;
     }
-
-    private String date;
-    private String startingTime;
-    private String endTime;
-    private String redundancy;
-    private String scheduleCategoryId;
 
 
 }

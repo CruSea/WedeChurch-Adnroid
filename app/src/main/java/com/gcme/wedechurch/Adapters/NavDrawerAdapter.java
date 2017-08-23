@@ -22,7 +22,7 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
     TypedArray icons;
     Context context;
 
-    ImageLoader imageLoader = App.getInstance().getImageLoader();
+//    ImageLoader imageLoader = App.getInstance().getImageLoader();
 
     // The default constructor to receive titles,icons and context from MainActivity.
     public NavDrawerAdapter(String[] titles , TypedArray icons , Context context){
@@ -55,7 +55,6 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
 
             if (itemType == 1) {
 
-                navCounter = (TextView) itemView.findViewById(R.id.tv_NavCounter);
                 navTitle = (TextView) itemView.findViewById(R.id.tv_NavTitle);
                 navIcon = (ImageView) itemView.findViewById(R.id.iv_NavIcon);
 
@@ -104,10 +103,10 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        if (imageLoader == null) {
-
-            imageLoader = App.getInstance().getImageLoader();
-        }
+//        if (imageLoader == null) {
+//
+//            imageLoader = App.getInstance().getImageLoader();
+//        }
 
         if (position != 0) {
 
@@ -115,13 +114,7 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
 
                 case 6: {
 
-                    holder.navCounter.setVisibility(View.GONE);
 
-                    if (App.getInstance().getNotificationsCount() > 0) {
-
-                        holder.navCounter.setText(Integer.toString(App.getInstance().getNotificationsCount()));
-                        holder.navCounter.setVisibility(View.VISIBLE);
-                    }
 
                     holder.navTitle.setText(titles[position - 1]);
                     holder.navIcon.setImageResource(icons.getResourceId(position-1, -1));
@@ -131,7 +124,7 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
 
                 default: {
 
-                    holder.navCounter.setVisibility(View.GONE);
+
                     holder.navTitle.setText(titles[position - 1]);
                     holder.navIcon.setImageResource(icons.getResourceId(position-1, -1));
 
@@ -141,53 +134,53 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
 
         } else {
 
-            if (App.getInstance().getId() != 0) {
-
-                holder.userPhoto.setVisibility(View.VISIBLE);
-                holder.userUsername.setVisibility(View.VISIBLE);
-                holder.userFullname.setVisibility(View.VISIBLE);
-
-                holder.userUsername.setText("@" + App.getInstance().getUsername());
-                holder.userFullname.setText(App.getInstance().getFullname());
-
-                if (App.getInstance().getPhotoUrl() != null && App.getInstance().getPhotoUrl().length() > 0) {
-
-                    imageLoader.get(App.getInstance().getPhotoUrl(), ImageLoader.getImageListener(holder.userPhoto, R.drawable.profile_default_photo, R.drawable.profile_default_photo));
-
-                } else {
-
-                    holder.userPhoto.setImageResource(R.drawable.profile_default_photo);
-                }
-
-                if (App.getInstance().getCoverUrl() != null && App.getInstance().getCoverUrl().length() > 0) {
-
-                    imageLoader.get(App.getInstance().getCoverUrl(), ImageLoader.getImageListener(holder.userCover, R.drawable.profile_default_cover, R.drawable.profile_default_cover));
-
-                } else {
-
-                    holder.userCover.setImageResource(R.drawable.profile_default_cover);
-                }
-
-                holder.userCover.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
-                holder.userFullname.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-
-                if (Build.VERSION.SDK_INT > 15) {
-
-                    holder.userCover.setImageAlpha(155);
-                }
-
-            } else {
-
-
-                holder.userCover.setImageResource(R.drawable.wedechurch_icon);
-                holder.userCover.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                holder.userCover.setVisibility(View.VISIBLE);
-
+//            if (App.getInstance().getId() != 0) {
+//
+//                holder.userPhoto.setVisibility(View.VISIBLE);
+//                holder.userUsername.setVisibility(View.VISIBLE);
+//                holder.userFullname.setVisibility(View.VISIBLE);
+//
+//                holder.userUsername.setText("@" + App.getInstance().getUsername());
+//                holder.userFullname.setText(App.getInstance().getFullname());
+//
+////                if (App.getInstance().getPhotoUrl() != null && App.getInstance().getPhotoUrl().length() > 0) {
+////
+////                    imageLoader.get(App.getInstance().getPhotoUrl(), ImageLoader.getImageListener(holder.userPhoto, R.drawable.profile_default_photo, R.drawable.profile_default_photo));
+////
+////                } else {
+////
+////                    holder.userPhoto.setImageResource(R.drawable.profile_default_photo);
+////                }
+//
+////                if (App.getInstance().getCoverUrl() != null && App.getInstance().getCoverUrl().length() > 0) {
+////
+////                    imageLoader.get(App.getInstance().getCoverUrl(), ImageLoader.getImageListener(holder.userCover, R.drawable.profile_default_cover, R.drawable.profile_default_cover));
+////
+////                } else {
+////
+////                    holder.userCover.setImageResource(R.drawable.profile_default_cover);
+////                }
+//
+//                holder.userCover.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//
+//                holder.userFullname.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+//
+//                if (Build.VERSION.SDK_INT > 15) {
+//
+//                    holder.userCover.setImageAlpha(155);
+//                }
+//
+//            } else {
+//
+//
+//                holder.userCover.setImageResource(R.drawable.wedechurch_icon);
+//                holder.userCover.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+//                holder.userCover.setVisibility(View.VISIBLE);
+//
                 holder.userPhoto.setVisibility(View.GONE);
                 holder.userUsername.setVisibility(View.GONE);
                 holder.userFullname.setVisibility(View.GONE);
-            }
+//            }
         }
 
     }

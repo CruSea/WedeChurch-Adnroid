@@ -1,12 +1,20 @@
 package com.gcme.wedechurch.model;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Unique;
+import java.io.Serializable;
 
 /**
  * Created by kzone on 5/8/2017.
  */
 
-public class Denomination extends SugarRecord<Denomination> {
+public class Denomination {
+
+    @Unique
+    int denoId,denoChurchs;
+    String denominationName,denoImageUrl,denoemail,denophone;
+
+
     public Denomination(int denoid,int denoChurchs, String denominationName, String denoImageUrl,String denoEmail,String denoPhone) {
         this.denoId = denoid;
         this.denoChurchs = denoChurchs;
@@ -14,6 +22,9 @@ public class Denomination extends SugarRecord<Denomination> {
         this.denoImageUrl = denoImageUrl;
         this.denoemail = denoEmail;
         this.denophone = denoPhone;
+    }
+
+    public Denomination() {
     }
 
     public int getDenoId() {
@@ -64,6 +75,5 @@ public class Denomination extends SugarRecord<Denomination> {
         this.denoImageUrl = denoImageUrl;
     }
 
-    int denoId,denoChurchs;
-    String denominationName,denoImageUrl,denoemail,denophone;
+
 }

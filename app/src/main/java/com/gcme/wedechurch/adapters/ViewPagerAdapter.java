@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.gcme.wedechurch.Fragments.favchurchfragment;
 import com.gcme.wedechurch.Fragments.faveventfragment;
+import com.gcme.wedechurch.Fragments.homeChurch;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -28,12 +29,15 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         if (position == 0) // if the position is 0 we are returning the First tab
         {
+            homeChurch tab1 = new homeChurch();
+            return tab1;
+        } else if (position == 1) {
             favchurchfragment tab1 = new favchurchfragment();
             return tab1;
-        } else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
-        {
-            faveventfragment tab2 = new faveventfragment();
-            return tab2;
+        } else{
+
+            faveventfragment tab3 = new faveventfragment();
+            return tab3;
         }
 
     }

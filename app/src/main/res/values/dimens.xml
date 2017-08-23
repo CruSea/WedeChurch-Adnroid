@@ -24,6 +24,38 @@
     <dimen name="button">14sp</dimen> <!-- MEDIUM (ALL CAPS) -->
 
 
+    <dimen name="map_icon_height">50dp</dimen>
+    <dimen name="map_icon_width">64dp</dimen>
+
+
     <dimen name="spacing_large">10dp</dimen> <!-- MEDIUM (ALL CAPS) -->
+
+
+
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
+
+
+    <!-- Utils -->
+    <dimen name="space_1">8dp</dimen>
+    <dimen name="space_2">16dp</dimen>
+    <dimen name="space_3">24dp</dimen>
+    <dimen name="space_4">32dp</dimen>
+    <dimen name="space_5">40dp</dimen>
+    <dimen name="space_6">48dp</dimen>
+    <dimen name="space_7">56dp</dimen>
+    <dimen name="space_8">64dp</dimen>
+    <dimen name="space_9">72dp</dimen>
+    <dimen name="space_10">80dp</dimen>
+
+    <dimen name="space_mini_1">0dp</dimen>
+    <dimen name="space_mini_2">2dp</dimen>
+    <dimen name="space_mini_3">4dp</dimen>
+    <dimen name="space_mini_4">6dp</dimen>
+    <dimen name="space_mini_5">8dp</dimen>
 
 </resources>

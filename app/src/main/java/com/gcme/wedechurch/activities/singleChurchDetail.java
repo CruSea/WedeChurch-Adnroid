@@ -1,8 +1,6 @@
 package com.gcme.wedechurch.activities;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,11 +17,18 @@ import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.bumptech.glide.Glide;
+import com.gcme.wedechurch.MainActivity;
 import com.gcme.wedechurch.R;
+import com.gcme.wedechurch.adapters.singleChurchEventAdapter;
+import com.gcme.wedechurch.adapters.ScheduleAdapter;
+import com.gcme.wedechurch.model.Church;
+import com.gcme.wedechurch.model.Fav;
+import com.gcme.wedechurch.model.Schedules;
 import com.gcme.wedechurch.model.denominationchurchs;
+import com.gcme.wedechurch.model.eventchurchs;
+import com.gcme.wedechurch.util.Utils;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,15 +52,34 @@ public class singleChurchDetail extends AppCompatActivity {
     ImageView BannerImage;
     Toolbar Detailtoolbar;
     RequestQueue queue;
-    String UrlId;
-    String url = "http://localchurchnew-001-site1.ctempurl.com/api/churchEvents";
-    RecyclerView recyclerView;
-    ListView scheduleList;
-    FloatingActionButton Detailgetdirection;
-    ImageView ToolbarChurchImage;
-    Toolbar toolbar;
 
-//    List<EventHandler> feedsList = new ArrayList<EventHandler>();
+    String url = "http://localchurchnew-001-site1.ctempurl.com/api/churchEvents";
+
+   FloatingActionButton Detailgetdirection;
+    ImageView ToolbarChurchImage;
+    ImageButton addfav,removefav;
+    TextView ChurchPhone,ChurchLink,ChurchEmail;
+    String ChurchLongitude,ChurchLattitude;
+    Toolbar toolbar;
+    ArrayList<denominationchurchs> churcdata;
+    ArrayList<Schedules> churcscheduledata;
+    String churchid;
+    RecyclerView recyclerView;
+    String churchimageurl;
+    String churchname;
+    String churchphone;
+    String churchwebsite;
+    String churchmail;
+    String churchlocation;
+    String churchlongitude ;
+    String churchlatitude;
+    ListView scheduleList;
+    protected long id;
+
+
+    private singleChurchEventAdapter mGoogleCardsnewsAdapter;
+
+    //    List<EventHandler> feedsList = new ArrayList<EventHandler>();
 //    RecyclerEventAdapter adapter;
     public singleChurchDetail() {
         // Required empty public constructor
@@ -68,289 +92,277 @@ public class singleChurchDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_churchdetail);
         ToolbarChurchImage= (ImageView) findViewById(R.id.churchheaderimage);
+        addfav= (ImageButton) findViewById(R.id.addfav);
+        removefav= (ImageButton) findViewById(R.id.removefav);
+        ChurchPhone= (TextView) findViewById(R.id.churchphone);
+        ChurchLink= (TextView) findViewById(R.id.churchLink);
+        ChurchEmail= (TextView) findViewById(R.id.churchmail);
         Intent intent = getIntent();
         Bundle bd = intent.getExtras();
         toolbar = (Toolbar) findViewById(R.id.churchtoolbar);
+        churcdata=getallchurchList();
+        churcscheduledata=getchurchScheduleList();
+        scheduleList= (ListView) findViewById(R.id.ScheduleList);
+        Detailgetdirection= (FloatingActionButton) findViewById(R.id.getchurchdirection);
+        recyclerView = (RecyclerView) findViewById(R.id.singlechurchevent);
         if(bd != null)
         {
-            long churchid  = bd.getLong("selectedchurchid");
-
+            churchid  = bd.getString("selectedchurchid");
             populatedatausingid(churchid);
+            getschedule();
         }
 
 
-//        if(getArguments().getString("Key")!=null) {
-//            String SelectedSearchitem = getArguments().getString("Key");
-//            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//            toolbar.inflateMenu(R.menu.main);
-//            toolbar.setTitle(SelectedSearchitem);
+        Detailgetdirection.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    for( denominationchurchs a : churcdata) {
+                        if (a.getchId()==churchid) {
+                            String churchlongitude = a.getChurchlongitude();
+                            String churchlatitude=a.getChurchlatitude();
+
+
+                            Intent i=new Intent(singleChurchDetail.this, MainActivity.class);
+                            i.putExtra("Longitude", churchlongitude);
+                            i.putExtra("Latitude", churchlatitude);
+                            startActivity(i);
+
+
+
+                        }
+                    }
+
+                }
+            });
+
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        mGoogleCardsnewsAdapter = new singleChurchEventAdapter(this,getchurchList());
+
+        recyclerView.setAdapter(mGoogleCardsnewsAdapter);
+        recyclerView.setLayoutManager(layoutManager);
+
+//
+//        if (fav != null) {
+//            addfav.setVisibility(View.VISIBLE);
+//            removefav.setVisibility(View.INVISIBLE);
 //        }
 
-//        Detailgetdirection= (FloatingActionButton) findViewById(R.id.detailgetdirection);
-//        contactsview = (TextView) findViewById(R.id.phoneno);
-//        webview = (TextView) findViewById(R.id.web);
-//        Detailtoolbar= (Toolbar) findViewById(R.id.detailtoolbar);
-//        BannerImage= (ImageView) findViewById(R.id.headerimage);
-//        scheduleList= (ListView) findViewById(R.id.ScheduleList);
-//        churchwhite = (ImageButton) findViewById(R.id.favhomechurch1);
-//        churchred = (ImageButton) findViewById(R.id.favhomechurch2);
-//        favred = (ImageButton) findViewById(R.id.favred);
-//        favwhite = (ImageButton) findViewById(R.id.favwhite);
-//        favwhite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                //   Toast.makeText(getActivity(), "white clicked", Toast.LENGTH_SHORT).show();
-//                if(getArguments().getString("Keyid")!=null) {
-//                    String Selecteditemid = getArguments().getString("Keyid");
-//                    if(DbHelper.checkfavDataRowById(Selecteditemid).getCount()==0){
-//                        DbHelper.Insertfav(Selecteditemid);
-//
-//                    }
-//
-//
-//                }
-//
-//                favwhite.setVisibility(View.GONE);
-//                favred.setVisibility(View.VISIBLE);
-//            }
-//        });
-//        favred.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(getArguments().getString("Keyid")!=null) {
-//                    String Selecteditemid = getArguments().getString("Keyid");
-//                    DbHelper.deletefavData(Selecteditemid);
-//                }
-//
-//                favwhite.setVisibility(View.VISIBLE);
-//                favred.setVisibility(View.GONE);
-//            }
-//        });
-//        churchwhite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//
-//                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-//                alertDialog.setCancelable(false);
-//                // Setting Dialog Title
-//                alertDialog.setTitle("Wede Church");
-//
-//                // Setting Dialog Message
-//                alertDialog.setMessage("Do you want make "+ getArguments().getString("MarkerName")+ " your home church? ");
-//
-//                // On pressing Settings button
-//                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog,int which) {
-//
-//
-//                        if(getArguments().getString("Keyid")!=null) {
-//                            SelectedSearchitem = getArguments().getString("Keyid");
-//                            DbHelper.changehome();
-//                            DbHelper.InsertHome(SelectedSearchitem);
+
+
+        List<Fav> fav=new ArrayList<>();
+        long count = Fav.count(Fav.class);
+        if(count>-1)
+        {
+            List<Fav> allfavs = Fav.listAll(Fav.class);
+           if (allfavs.size()>0){
+
+               if (Fav.find(Fav.class, "church_Id = ?", churchid) == null) {
+
+                   addfav.setVisibility(View.VISIBLE);
+                   removefav.setVisibility(View.INVISIBLE);
+
+
+               } else {
+                   addfav.setVisibility(View.INVISIBLE);
+                   removefav.setVisibility(View.VISIBLE);
+               }
+
+
+            }else{
+               addfav.setVisibility(View.VISIBLE);
+               removefav.setVisibility(View.INVISIBLE);
+
+           }
+        } else {
+            addfav.setVisibility(View.INVISIBLE);
+            removefav.setVisibility(View.VISIBLE);
+
+
+        }
+
+
+
+        addfav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                List<Fav> fav=new ArrayList<>();
+                long count2 = Fav.count(Fav.class);
+                if(count2>-1)
+                {
+                    List<Fav> allfavs = Fav.listAll(Fav.class);
+//                    if (allfavs.size()>0){
+
+//                        fav= Fav.find(Fav.class, "churchId = ?", churchid);
+                        Fav favadd = new Fav("",churchid);
+//                        if (fav == null) {
+
+                            addfav.setVisibility(View.VISIBLE);
+                            removefav.setVisibility(View.INVISIBLE);
+
+                            favadd.save();
+
 //                        }
+
+//                    }else{
+//                        if (Fav.find(Fav.class, "church_Id = ?", churchid) == null) {
+//
+//                            addfav.setVisibility(View.VISIBLE);
+//                            removefav.setVisibility(View.INVISIBLE);
 //
 //
-//
-//
-//                        churchwhite.setVisibility(View.GONE);
-//                        churchred.setVisibility(View.VISIBLE);
-//
+//                        } else {
+//                            addfav.setVisibility(View.INVISIBLE);
+//                            removefav.setVisibility(View.VISIBLE);
+////                        }
 //                    }
-//                });
-//
-//                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//
-//                // Showing Alert Message
-//                alertDialog.show();
-//
-//
-//
-//
-//            }
-//        });
-//        churchred.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-////
-////                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-////                alertDialog.setCancelable(false);
-////                // Setting Dialog Title
-////                alertDialog.setTitle("Wede Church");
-////
-////
-////                // Setting Dialog Message
-////                alertDialog.setMessage("Do remove "+ getArguments().getString("MarkerName")+ " from your home church? ");
-////
-////                // On pressing Settings button
-////                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-////                    public void onClick(DialogInterface dialog,int which) {
-////
-////
-////                        DbHelper.changehome();
-////
-////
-////
-////
-////                        //   Toast.makeText(getActivity(), "white clicked", Toast.LENGTH_SHORT).show();
-////
-////                        churchred.setVisibility(View.GONE);
-////                        churchwhite.setVisibility(View.VISIBLE);
-////
-////                    }
-////                });
-////
-////                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-////                    public void onClick(DialogInterface dialog, int which) {
-////                        dialog.dismiss();
-////                    }
-////                });
-////
-////
-////                // Showing Alert Message
-////                alertDialog.show();
-////
-////
-//
-//
-//            }
-//        });
-//
-//
-//
-////        if(getArguments().getString("Keyid")!=null) {
-////            SelectedSearchitem = getArguments().getString("Key");
-////            String Selecteditemid = getArguments().getString("Keyid");
-////            Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-////            toolbar.inflateMenu(R.menu.main);
-////
-////            Detailtoolbar.setTitle(SelectedSearchitem);
-////            //UrlId=url+Selecteditemid;
-////
-////
-////            FillContents(Selecteditemid);
-////            getschedule(Selecteditemid);
-////
-////            StatusChecker(Selecteditemid);
-////
-////
-////        }
-//
-//        if(getArguments().getString("MarkerName")!=null) {
-//            Selectedmarkname = getArguments().getString("MarkerName");
-//
-//
-//            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//            toolbar.inflateMenu(R.menu.main);
-//
-//            Detailtoolbar.setTitle(Selectedmarkname);
-//
-//
-//
-//            fillbyname(Selectedmarkname);
-//
-//
-//
-//
-//
-////             DbHelper = new DatabaseAdaptor(getActivity());
-////
-////             Cursor cursor = DbHelper.getMarkerDataRowByname(Selectedmarkname);
-////             if (cursor != null) {
-////                 final String Longitude = cursor.getString(cursor.getColumnIndex(DbHelper.LONGITUDE));
-////                 final String Latitude = cursor.getString(cursor.getColumnIndex(DbHelper.LATITUDE));
-//
-//
-//            FloatingActionButton getdirection = (FloatingActionButton) view.findViewById(R.id.detailgetdirection);
-//            getdirection.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//
-//                    Home_fragment secondFrag = new Home_fragment();
-//                    Bundle args = new Bundle();
-////                         args.putString("Longitude",Longitude);
-////                         args.putString("Latitude",Latitude);
-//
-//                    secondFrag.setArguments(args);
-//                    getFragmentManager()
-//                            .beginTransaction()
-//                            .replace(R.id.fragment_container, secondFrag)
-//                            .addToBackStack("tag_back_Home_fragment")
-//                            .commit();
-//
-//
-//                }
-//            });
-//
-//
-//        }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+                } else {
+                    addfav.setVisibility(View.INVISIBLE);
+                    removefav.setVisibility(View.VISIBLE);
+
+
+                }
+
+
+
+
+
+
+
+
+
+        }
+        });
+
+        removefav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addfav.setVisibility(View.VISIBLE);
+                removefav.setVisibility(View.INVISIBLE);
+
+
+                List<Fav> fav;
+                long count = Fav.count(Fav.class);
+                if(count>0)
+                {
+
+                    fav= Fav.find(Fav.class, "churchId = ?", churchid);
+
+
+                    Fav favadd = new Fav(churchid,"");
+
+                    if (fav == null) {
+
+                        addfav.setVisibility(View.INVISIBLE);
+                        removefav.setVisibility(View.VISIBLE);
+
+                        favadd.delete();
+                    }
+
+                } else {
+                    addfav.setVisibility(View.VISIBLE);
+                    removefav.setVisibility(View.INVISIBLE);
+
+
+                }
+
+            }
+        });
 
 
 
     }
 
-    private void populatedatausingid(long churchid) {
+    /** populates the schedules to list **/
+    private void getschedule() {
 
-        ArrayList<denominationchurchs> churcdata=getallchurchList();
 
+
+
+            ScheduleAdapter scheduleAdapter = new ScheduleAdapter(churcscheduledata, this);
+            scheduleList.setAdapter(scheduleAdapter);
+            Utils.setListViewHeightBasedOnItems(scheduleList);
+
+
+
+    }
+
+
+
+
+
+    private void populatedatausingid(String churchid) {
 
 
         for( denominationchurchs a : churcdata) {
-// or equalsIgnoreCase or whatever your conditon is
             if (a.getchId()==churchid) {
 
-               String churchimageurl= a.getDenochurchimageUrl();
-                String churchname=a.getNameChurchs();
+              churchimageurl= a.getDenochurchimageUrl();
+                churchname=a.getNameChurchs();
+                 churchphone=a.getChurchphone();
+                 churchwebsite=a.getChurchwebsite();
+                 churchmail=a.getChurchmail();
+                 churchlocation=a.getLocation();
+                 churchlongitude = a.getChurchlongitude();
+                 churchlatitude=a.getChurchlatitude();
 
-                populatedata(churchimageurl,churchname);
+                populatedata(churchimageurl,churchname,churchphone,churchwebsite,churchmail,churchlocation,churchlongitude,churchlatitude);
             }
     }
     }
 
-    private void populatedata(String churchimageurl,String churchname) {
+    private void populatedata(String churchimageurl,String churchname,String churchphone,String churchwebsite,String churchmail,
+                              String churchlocation,String churchlongitude,String churchlatitude) {
 
 
         toolbar.setTitle(churchname);
+        ChurchPhone.setText(churchphone);
+        ChurchLink.setText(churchwebsite);
+        ChurchEmail.setText(churchmail);
         Glide.with(context)
                 .load(churchimageurl)
                 .asBitmap()
                 .placeholder(R.mipmap.app_logo_png)
                 .into(ToolbarChurchImage);
 
-
+        ChurchLongitude=churchlongitude;
+        ChurchLattitude=churchlatitude;
 
     }
 
-    public static ArrayList<denominationchurchs> getallchurchList() {
+    private static ArrayList<denominationchurchs> getallchurchList() {
         ArrayList<denominationchurchs> list = new ArrayList<>();
 
-        list.add(new denominationchurchs(1,"Bole MKC","Bole", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/0.jpg"));
-        list.add(new denominationchurchs(2,"Yeka MKC","Yeka","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/1.jpg"));
-        list.add(new denominationchurchs(3,"Kazanchis MKC","Kazanchis", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/2.jpg"));
-        list.add(new denominationchurchs(4,"Semit MKC","Semit", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/3.jpg"));
-        list.add(new denominationchurchs(5,"Piassa MKC","Piassa", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg"));
+        list.add(new denominationchurchs("1","Bole MKC","Bole", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/0.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+        list.add(new denominationchurchs("2","Yeka MKC","Yeka","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/1.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+        list.add(new denominationchurchs("3","Kazanchis MKC","Kazanchis", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/2.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+        list.add(new denominationchurchs("4","Semit MKC","Semit", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/3.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+        list.add(new denominationchurchs("5","Piassa MKC","Piassa", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
 
         return list;
     }
+
+    private static ArrayList<Schedules> getchurchScheduleList() {
+        ArrayList<Schedules> list = new ArrayList<>();
+        list.add(new Schedules("Sunday Surmon", "sunday", "10:00-7:00"));
+        list.add(new Schedules("Wednsday worship", "wednsday", "10:00-7:00"));
+        list.add(new Schedules("Youth", "sunday", "10:00-7:00"));
+
+        return list;
+    }
+
+    public static ArrayList<eventchurchs> getchurchList() {
+        ArrayList<eventchurchs> list = new ArrayList<>();
+        list.add(new eventchurchs(1,"Yougo Blaze conference","10:30", "7/12/2017","Youth","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/1.jpg","this is the event description","bole","38.828731","8.991639"));
+        list.add(new eventchurchs(2,"beza Arise Africa","7:30","8/6/2017","Confrence","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg","this is the event description","bole","38.828731","8.991639"));
+        list.add(new eventchurchs(3,"Greatcommison Outreach","5:30","5/12/2017","Gospel", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/2.jpg","this is the event description","bole","38.828731","8.991639"));
+        list.add(new eventchurchs(4,"Beki music consort","11:00","4/12/2017","Song Consort", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/3.jpg","this is the event description","bole","38.828731","8.991639"));
+        list.add(new eventchurchs(5,"Rinald Bonke Confrence","2:00","17/2/2017","Gospel", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg","this is the event description","bole","38.828731","8.991639"));
+        return list;
+    }
+
+
 }

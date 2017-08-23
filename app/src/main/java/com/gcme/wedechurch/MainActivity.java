@@ -13,20 +13,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-
 import com.gcme.wedechurch.Fragments.allDenomination;
 import com.gcme.wedechurch.Fragments.Events;
 import com.gcme.wedechurch.Fragments.favorites;
 import com.gcme.wedechurch.Fragments.fragmentDrawer;
 import com.gcme.wedechurch.Fragments.MapFragment;
 import com.gcme.wedechurch.Fragments.Profile;
-import com.gcme.wedechurch.intro.IntroActivity;
 import com.gcme.wedechurch.common.ActivityBase;
 import com.gcme.wedechurch.dialogs.CoverChooseDialog;
 import com.gcme.wedechurch.dialogs.PhotoChooseDialog;
 import com.gcme.wedechurch.dialogs.PopularSettingsDialog;
 import com.gcme.wedechurch.dialogs.ProfileReportDialog;
+import com.gcme.wedechurch.model.Church;
+import com.gcme.wedechurch.model.denominationchurchs;
+import com.orm.SugarRecord;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.id.list;
 
 public class MainActivity extends ActivityBase implements fragmentDrawer.FragmentDrawerListener, PhotoChooseDialog.AlertPositiveListener, CoverChooseDialog.AlertPositiveListener, ProfileReportDialog.AlertPositiveListener, PopularSettingsDialog.AlertPositiveListener {
 
@@ -50,7 +55,11 @@ public class MainActivity extends ActivityBase implements fragmentDrawer.Fragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//
+
+//        Church tbl=new Church(1,"MkC","Ethiopia","Addis Ababa","Bole","lat","longit","06121225","www.com","2sdfs","banner","descritption","logo","parchurchid","gone");
+//        tbl.save();
+
+
 //        if (savedInstanceState != null) {
 //
 //            //Restore the fragment's instance
@@ -85,37 +94,6 @@ public class MainActivity extends ActivityBase implements fragmentDrawer.Fragmen
         drawerFragment.setDrawerListener(this);
 
 
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //  Initialize SharedPreferences
-                SharedPreferences getPrefs = PreferenceManager
-                        .getDefaultSharedPreferences(getBaseContext());
-
-                //  Create a new boolean and preference and set it to true
-                boolean isFirstStart = getPrefs.getBoolean("firstStart", true);
-
-                //  If the activity has never started before...
-                if (isFirstStart) {
-
-                    //  Launch app intro
-                    Intent i = new Intent(MainActivity.this, IntroActivity.class);
-                    startActivity(i);
-
-                    //  Make a new preferences editor
-                    SharedPreferences.Editor e = getPrefs.edit();
-
-                    //  Edit preference to make it false because we don't want this to run again
-                    e.putBoolean("firstStart", false);
-
-                    //  Apply changes
-                    e.apply();
-                }
-            }
-        });
-
-        // Start the thread
-        t.start();
 
         if (fragment != null) {
 
@@ -143,8 +121,54 @@ public class MainActivity extends ActivityBase implements fragmentDrawer.Fragmen
 
             displayView(1);
         }
-    }
 
+
+//        List<denominationchurchs> fav;
+//        long count = denominationchurchs.count(Church.class);
+//        if(count>0)
+//        {
+//
+//            fav= denominationchurchs.find(denominationchurchs.class, "id = ?", "5");
+//
+//            List<denominationchurchs> churchs = new ArrayList<>();
+//
+//            if (fav == null) {
+//            churchs.add( new denominationchurchs("1","Bole MKC","Bole", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/0.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+//            churchs.add(new denominationchurchs("2","Yeka MKC","Yeka","http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/1.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+//            churchs.add(new denominationchurchs("3","Kazanchis MKC","Kazanchis", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/2.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+//            churchs.add(new denominationchurchs("4","Semit MKC","Semit", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/3.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+//            churchs.add(new denominationchurchs("5","Piassa MKC","Piassa", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg", "0913609212","bolemkc.com","bolemkc@bolemkc.info","38.828731","8.991639"));
+//            SugarRecord.saveInTx(churchs);
+//
+//
+//            }else{
+//
+//            }
+//
+//
+//
+//
+//
+//        } else {
+//
+//            List<denominationchurchs> fav2;
+//            fav2 = denominationchurchs.find(denominationchurchs.class, "id = ?", "5");
+//
+//            List<denominationchurchs> churchs = new ArrayList<>();
+//
+//            if (fav2 == null) {
+//                churchs.add(new denominationchurchs("1", "Bole MKC", "Bole", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/0.jpg", "0913609212", "bolemkc.com", "bolemkc@bolemkc.info", "38.828731", "8.991639"));
+//                churchs.add(new denominationchurchs("2", "Yeka MKC", "Yeka", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/1.jpg", "0913609212", "bolemkc.com", "bolemkc@bolemkc.info", "38.828731", "8.991639"));
+//                churchs.add(new denominationchurchs("3", "Kazanchis MKC", "Kazanchis", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/2.jpg", "0913609212", "bolemkc.com", "bolemkc@bolemkc.info", "38.828731", "8.991639"));
+//                churchs.add(new denominationchurchs("4", "Semit MKC", "Semit", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/3.jpg", "0913609212", "bolemkc.com", "bolemkc@bolemkc.info", "38.828731", "8.991639"));
+//                churchs.add(new denominationchurchs("5", "Piassa MKC", "Piassa", "http://pengaja.com/uiapptemplate/newphotos/listviews/draganddrop/travel/4.jpg", "0913609212", "bolemkc.com", "bolemkc@bolemkc.info", "38.828731", "8.991639"));
+//                SugarRecord.saveInTx(churchs);
+//
+//            }
+//
+//
+//        }
+    }
 //    @Override
 //    protected void onSaveInstanceState(Bundle outState) {
 //

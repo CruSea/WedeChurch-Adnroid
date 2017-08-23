@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="150dp"
+android:layout_height="144dp"
+    android:padding="10dp"
+android:background="@drawable/card_background_white"
+android:id="@+id/eventitemholder"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item_google_cards_travel_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/material_grey_300"
+    android:contentDescription="@string/cd_main_image"
+    android:scaleType="centerCrop" />
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#cc000000" />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical"
+    android:weightSum="4"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true">
+
+    <com.gcme.wedechurch.font.RobotoTextView
+        android:id="@+id/list_item_google_cards_travel_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_weight="3"
+        android:text="Monument walk tour"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:typeface="robotoThin" />
+    <com.gcme.wedechurch.font.RobotoTextView
+        android:id="@+id/church_event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="Monument walk tour"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
+        app:typeface="robotoThin" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+</RelativeLayout>
+

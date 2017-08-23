@@ -72,23 +72,23 @@ public class RecoveryFragment extends Fragment implements Constants {
 
                 email = mEmail.getText().toString();
 
-                if (!App.getInstance().isConnected()) {
-
-                    Toast.makeText(getActivity(), R.string.msg_network_error, Toast.LENGTH_SHORT).show();
-
-                } else {
-
-                    Helper helper = new Helper();
-
-                    if (helper.isValidEmail(email)) {
-
-                        recovery();
-
-                    } else {
-
-                        Toast.makeText(getActivity(), getText(R.string.error_email), Toast.LENGTH_SHORT).show();
-                    }
-                }
+//                if (!App.isConnected()) {
+//
+//                    Toast.makeText(getActivity(), R.string.msg_network_error, Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//
+//                    Helper helper = new Helper();
+//
+//                    if (helper.isValidEmail(email)) {
+//
+//                        recovery();
+//
+//                    } else {
+//
+//                        Toast.makeText(getActivity(), getText(R.string.error_email), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
             }
         });
 
@@ -191,7 +191,7 @@ public class RecoveryFragment extends Fragment implements Constants {
             }
         };
 
-        App.getInstance().addToRequestQueue(jsonReq);
+//        App.getInstance().addToRequestQueue(jsonReq);
     }
 
     @Override

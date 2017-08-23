@@ -27,15 +27,79 @@
             android:layout_marginTop="8dp"
             android:textColorHint="@color/white"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_name"
+            <EditText android:id="@+id/input_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:inputType="textPersonName"
                 android:backgroundTint="@color/white"
-                android:hint="@string/signup_name" />
+                android:hint="@string/first_signup_name" />
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:inputType="textPersonName"
+                android:backgroundTint="@color/white"
+                android:hint="@string/last_signup_name" />
+        </android.support.design.widget.TextInputLayout>
+       <LinearLayout android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+           android:orientation="horizontal">
+
+           <RelativeLayout android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:orientation="horizontal">
+               <TextView android:id="@+id/Sex"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textColorHint="@color/white"
+                   android:layout_centerVertical="true"
+                   android:textColor="@color/white"
+                   android:paddingRight="50dp"
+                   android:hint="@string/sex" />
+               <android.support.v7.widget.CardView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:cardElevation="5dp"
+                   app:cardUseCompatPadding="true"
+                   android:layout_toRightOf="@+id/Sex"
+                   >
+                   <Spinner
+                       android:id="@+id/spinner"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:gravity="center" />
+               </android.support.v7.widget.CardView>
+
+
+           </RelativeLayout>
+
+
+
+       </LinearLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:inputType="textPersonName"
+                android:backgroundTint="@color/white"
+                android:hint="@string/user_name" />
+        </android.support.design.widget.TextInputLayout>
         <!-- Address Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -43,13 +107,13 @@
             android:layout_marginTop="8dp"
             android:textColorHint="@color/white"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_address"
+            <EditText android:id="@+id/input_country"
                 android:layout_width="match_parent"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
                 android:backgroundTint="@color/white"
-                android:hint="@string/signup_address" />
+                android:hint="@string/signup_country" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -94,6 +158,8 @@
             android:layout_marginTop="8dp"
             android:textColorHint="@color/white"
             android:layout_marginBottom="8dp">
+
+
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

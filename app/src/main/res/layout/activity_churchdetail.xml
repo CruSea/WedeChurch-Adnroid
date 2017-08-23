@@ -4,6 +4,17 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/getchurchdirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        app:layout_anchor="@+id/contactframe"
+        app:layout_anchorGravity="bottom|center"
+        app:srcCompat="@drawable/ic_rout" />
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_detail"
         android:layout_width="match_parent"
@@ -17,16 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:expandedTitleGravity="center_horizontal|bottom"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleGravity="center_horizontal|bottom"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <!--<android.support.v7.widget.Toolbar-->
-                <!--android:background="@color/colorPrimary"-->
-                <!--android:layout_gravity="top"-->
-                <!--android:title="wedechurch"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:id="@+id/churchtoolbar"/>-->
 
             <ImageView
                 android:id="@+id/churchheaderimage"
@@ -41,10 +45,11 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/churchtoolbar"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
                 app:layout_collapseMode="pin"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
@@ -53,56 +58,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top|right"
+                android:orientation="horizontal"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                android:orientation="horizontal">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <RelativeLayout
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="top"
-                    app:layout_collapseMode="pin"
-                    >
+                    app:layout_collapseMode="pin">
+
                     <ImageButton
+                        android:id="@+id/addfav"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:id="@+id/favwhite"
                         android:background="?android:attr/selectableItemBackground"
-                        android:src="@drawable/ic_favorite_border"
-                        />
+                        android:src="@drawable/ic_favorite_border" />
+
                     <ImageButton
+                        android:id="@+id/removefav"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:id="@+id/favred"
-                        android:visibility="gone"
                         android:background="?android:attr/selectableItemBackground"
                         android:src="@drawable/ic_favorite_white"
-                        />
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    app:layout_collapseMode="pin"
                     android:layout_gravity="top"
-                    >
+                    app:layout_collapseMode="pin">
+
                     <ImageButton
                         android:id="@+id/favhomechurch1"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
 
                         android:background="?android:attr/selectableItemBackground"
-                        android:src="@drawable/ic_home"
-                        />
+                        android:src="@drawable/ic_home" />
+
                     <ImageButton
                         android:id="@+id/favhomechurch2"
                         android:layout_width="50dp"
-                        android:visibility="gone"
                         android:layout_height="50dp"
                         android:background="?android:attr/selectableItemBackground"
                         android:src="@drawable/ic_home_selected"
-                        />
+                        android:visibility="gone" />
                 </RelativeLayout>
 
 
@@ -110,25 +113,23 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-
-
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:background="@color/gray_bg"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:clipToPadding="false" >
+        android:background="@color/gray_bg"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/contactframe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:id="@+id/contactframe"
                 app:cardElevation="5dp"
                 app:cardUseCompatPadding="true">
 
@@ -136,8 +137,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -158,70 +159,32 @@
 
 
                         <TextView
-                            android:id="@+id/textView12"
+                            android:id="@+id/churchphone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
+                            android:layout_alignParentBottom="true"
+                            android:layout_toEndOf="@+id/ivContactItem1"
+                            android:layout_toRightOf="@+id/ivContactItem1"
                             android:autoLink="phone"
-                            android:textColorLink="#2f94ff"
                             android:text="No Phone Number"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121"
-                            android:layout_alignParentBottom="true"
-                            android:layout_toRightOf="@+id/ivContactItem1"
-                            android:layout_toEndOf="@+id/ivContactItem1" />
+                            android:textColorLink="#2f94ff" />
 
 
                     </RelativeLayout>
 
 
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackground"
                         android:clickable="true"
-                        android:padding="@dimen/activity_horizontal_margin">
-
-                    <ImageView
-                        android:id="@+id/ivContactItem2"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_centerVertical="true"
-
-
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        app:srcCompat="@mipmap/ic_link" />
-
-                    <TextView
-                        android:id="@+id/churchLink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:autoLink="web"
-                        android:text="No link"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="#212121"
-                        android:textColorLink="#2f94ff"
-                        android:layout_centerVertical="true"
-                        android:layout_toRightOf="@+id/ivContactItem2"
-                        android:layout_toEndOf="@+id/ivContactItem2" />
-
-                </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="?attr/selectableItemBackground"
-                        android:clickable="true"
-
-                        android:paddingBottom="50dp"
                         android:padding="@dimen/activity_horizontal_margin">
 
                         <ImageView
-                            android:id="@+id/churchmailimg"
+                            android:id="@+id/ivContactItem2"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
@@ -229,72 +192,124 @@
 
                             android:layout_marginEnd="@dimen/activity_horizontal_margin"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            app:srcCompat="@mipmap/ic_link" />
+
+                        <TextView
+                            android:id="@+id/churchLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/ivContactItem2"
+                            android:layout_toRightOf="@+id/ivContactItem2"
+                            android:autoLink="web"
+                            android:text="No link"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="#212121"
+                            android:textColorLink="#2f94ff" />
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="50dp">
+
+                        <ImageView
+                            android:id="@+id/churchmailimg"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+
+
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
                             app:srcCompat="@drawable/ic_mail" />
 
                         <TextView
                             android:id="@+id/churchmail"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
-                            android:autoLink="web"
+                            android:layout_alignParentTop="true"
+                            android:layout_toEndOf="@+id/churchmailimg"
+                            android:layout_toRightOf="@+id/churchmailimg"
+                            android:autoLink="email"
+                            android:paddingBottom="20dp"
+                            android:paddingLeft="10dp"
                             android:text="No link"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121"
-                            android:textColorLink="#2f94ff"
-                            android:layout_centerVertical="true"
-                            android:layout_toRightOf="@+id/churchmailimg"
-                            android:layout_toEndOf="@+id/churchmailimg" />
-
+                            android:textColorLink="#2f94ff" />
 
 
                     </RelativeLayout>
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/churchschedules"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/scheduleframe"
                 android:layout_below="@+id/contactframe"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
+
+                android:paddingLeft="10dp"
+                android:text="schedules"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/material_grey_700"
+                android:textColorLink="#2f94ff" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/scheduleframe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_below="@+id/churchschedules"
+
                 app:cardElevation="5dp"
                 app:cardUseCompatPadding="true">
 
                 <ListView
+                    android:id="@+id/ScheduleList"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/churchschedules" />
 
             </android.support.v7.widget.CardView>
 
 
+            <TextView
+                android:id="@+id/churchtextevent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/scheduleframe"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="20dp"
+                android:text="events"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/material_grey_700"
+                android:textColorLink="#2f94ff" />
 
-            <RelativeLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/singlechurchevent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/scheduleframe" >
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-            </RelativeLayout>
-
+                android:layout_below="@+id/churchtextevent"
+                android:paddingBottom="10dp" />
 
 
         </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButtonOptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        app:layout_anchor="@id/contactframe"
-        app:layout_anchorGravity="bottom|center"
-        app:srcCompat="@drawable/ic_rout" />
-
 
 
 </android.support.design.widget.CoordinatorLayout>

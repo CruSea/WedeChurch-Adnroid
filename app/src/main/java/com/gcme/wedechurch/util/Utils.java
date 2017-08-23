@@ -1,52 +1,63 @@
 package com.gcme.wedechurch.util;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.Typeface;
-import android.media.ExifInterface;
-import android.os.Build;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.gcme.wedechurch.MainActivity;
-import com.gcme.wedechurch.R;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+        import android.annotation.TargetApi;
+        import android.app.Activity;
+        import android.app.Dialog;
+        import android.content.Context;
+        import android.content.res.TypedArray;
+        import android.graphics.Bitmap;
+        import android.graphics.BitmapFactory;
+        import android.graphics.Matrix;
+        import android.graphics.Point;
+        import android.graphics.Typeface;
+        import android.media.ExifInterface;
+        import android.os.Build;
+        import android.text.Spannable;
+        import android.text.SpannableString;
+        import android.util.DisplayMetrics;
+        import android.util.Log;
+        import android.view.Display;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ListAdapter;
+        import android.widget.ListView;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+        import com.gcme.wedechurch.MainActivity;
+        import com.gcme.wedechurch.R;
+        import com.gcme.wedechurch.common.ActivityBase;
+        import com.google.android.gms.common.ConnectionResult;
+        import com.google.android.gms.common.GooglePlayServicesUtil;
+
+
+        import java.io.File;
+        import java.io.FileInputStream;
+        import java.io.FileNotFoundException;
+        import java.io.FileOutputStream;
+        import java.io.IOException;
+        import java.util.regex.Matcher;
+        import java.util.regex.Pattern;
 
 /**
  * Created by Panacea-Soft on 7/15/15.
  * Contact Email : teamps.is.cool@gmail.com
  */
 
-public class Utils {
+public class Utils  {
 
-    public static MainActivity activity;
+    public static ActivityBase activity;
     private static Typeface fromAsset;
     private static SpannableString spannableString;
     private static Fonts currentTypeface;
 
 
+
+
     public Utils(Context context){
 
-        this.activity = (MainActivity) context;
+        this.activity = (ActivityBase) context;
     }
 
     public static int getToolbarHeight(Context context) {
@@ -202,16 +213,16 @@ public class Utils {
                 if(fonts == Fonts.NOTO_SANS) {
                     fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/NotoSans-Regular.ttf");
                 }else if(fonts == Fonts.ROBOTO){
-                    fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular.ttf");
+                    fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular2.ttf");
                 }
             }
         }else{
             if(fonts == Fonts.NOTO_SANS){
                 fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/NotoSans-Regular.ttf");
             }else if(fonts == Fonts.ROBOTO){
-                fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular.ttf");
+                fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular2.ttf");
             }else{
-                fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular.ttf");
+                fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular2.ttf");
             }
 
             //fromAsset = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Italic.ttf");
@@ -220,7 +231,12 @@ public class Utils {
         return fromAsset;
     }
 
-
+    public static SpannableString getSpannableString(String str) {
+        spannableString = new SpannableString(str);
+        spannableString.setSpan(new PSTypefaceSpan("", Utils.getTypeFace(Fonts.ROBOTO)), 0, spannableString.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return spannableString;
+    }
 
     public enum Fonts{
         ROBOTO,
@@ -288,6 +304,38 @@ public class Utils {
 
     }
 
+
+    public static boolean setListViewHeightBasedOnItems(ListView listView) {
+
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter != null) {
+
+            int numberOfItems = listAdapter.getCount();
+
+            // Get total height of all items.
+            int totalItemsHeight = 0;
+            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
+                View item = listAdapter.getView(itemPos, null, listView);
+                item.measure(0, 0);
+                totalItemsHeight += item.getMeasuredHeight();
+            }
+
+            // Get total height of all item dividers.
+            int totalDividersHeight = listView.getDividerHeight() *
+                    (numberOfItems -1);
+
+            // Set list height.
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            params.height =  (totalItemsHeight + totalDividersHeight);
+            listView.setLayoutParams(params);
+            listView.requestLayout();
+
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 
 
 }

@@ -19,8 +19,8 @@ public class favorites extends Fragment {
     ViewPager pager;
     ViewPagerAdapter adapter;
     fabTabLayoutadapter tabs;
-    CharSequence Titles[] = {"Favorite Churches", "Event Reminder"};
-    int Numboftabs = 2;
+    CharSequence Titles[] = {"My Church","Favorite Churches", "Event Reminder"};
+    int Numboftabs = 3;
 
     public favorites() {
         // Required empty public constructor

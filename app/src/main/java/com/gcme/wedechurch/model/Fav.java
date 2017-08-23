@@ -3,25 +3,31 @@ package com.gcme.wedechurch.model;
 import android.support.annotation.Keep;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Unique;
 
 /**
  * Created by kzone on 2/4/2017.
  */
 
-@Keep
-public class Fav extends SugarRecord<Fav> {
+public class Fav extends SugarRecord {
 
-    private int favId;
+    @Unique
     private String userId;
     private String churchId;
 
-    public int getfavId() {
-        return favId;
+
+    public void Fav(){
+
     }
 
-    public void setId(int id) {
-        this.favId = id;
+
+
+    public Fav(String userid, String churchid){
+        this.userId=userid;
+        this.churchId=churchid;
     }
+
+
 
     public String getUserId() {
         return userId;
@@ -35,8 +41,10 @@ public class Fav extends SugarRecord<Fav> {
         return churchId;
     }
 
-    public void setChurchId(String churchId) {
+    public void setChurchId(String  churchId) {
         this.churchId = churchId;
     }
+
+
 
 }

@@ -1,17 +1,18 @@
 package com.gcme.wedechurch.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.gcme.wedechurch.activities.EventDetail;
 import com.gcme.wedechurch.R;
-import com.gcme.wedechurch.model.denominationchurchs;
 import com.gcme.wedechurch.model.eventchurchs;
 import java.util.ArrayList;
 
@@ -60,6 +61,8 @@ public class eventsadapter extends BaseAdapter {
 						R.layout.events_item, parent,
 						false);
 				holder = new ViewHolder();
+				holder.eventitemholder = (RelativeLayout) convertView
+						.findViewById(R.id.eventitemholder);
 				holder.eventimage = (ImageView) convertView
 						.findViewById(R.id.eventimage);
 				holder.travelHeader = (TextView) convertView
@@ -72,7 +75,9 @@ public class eventsadapter extends BaseAdapter {
 				.findViewById(R.id.eventcategory);
 
 			convertView.setTag(holder);
-			eventchurchs dm = mDummyModelList.get(position);
+
+
+		final eventchurchs dm= mDummyModelList.get(position);
 
 			String eventurl = dm.getEventimageurl();
 			Glide.with(mContext)
@@ -85,6 +90,27 @@ public class eventsadapter extends BaseAdapter {
 		     holder.eventtime.setText(dm.getEventtime());
 		     holder.eventcategory.setText(dm.getEventcategory());
 			// holder.travelHeader.setText(dm.getText());
+
+			holder.eventitemholder.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent=new Intent(mContext, EventDetail.class);
+					//add data to the Intent object
+					intent.putExtra("id", dm.getmId());
+					intent.putExtra("name", dm.getNameevent());
+					intent.putExtra("image", dm.getEventimageurl());
+					intent.putExtra("desc", dm.getEventdescription());
+					intent.putExtra("date", dm.getEventdate());
+					intent.putExtra("time", dm.getEventtime());
+					intent.putExtra("category", dm.getEventcategory());
+					intent.putExtra("location", dm.getEventlocation());
+					intent.putExtra("longitude", dm.getEventlongitude());
+					intent.putExtra("latitude", dm.getEventlatitude());
+					//start the second activity
+					mContext.startActivity(intent);
+				}
+			});
+
 			return convertView;
 
 	}
@@ -98,6 +124,7 @@ public class eventsadapter extends BaseAdapter {
 		public/* Fontello */TextView icon;
 		public/* Fontello */TextView eventtime;
 		public/* Fontello */TextView eventcategory;
+		public RelativeLayout eventitemholder;
 	}
 
 

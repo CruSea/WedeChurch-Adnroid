@@ -1,21 +1,483 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_background_white"
+    tools:context="com.geekytouches.matric.MainActivity">
 
-    <!-- view background color -->
-    <solid android:color="@color/colorCounterBackground" >
-    </solid>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- If you want to add some padding -->
-    <padding
-        android:top="3dp"
-        android:bottom="3dp"
-        android:right="5dp"
-        android:left="5dp" >
-    </padding>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <!-- Here is the corner radius -->
-    <corners android:radius="2dp" >
-    </corners>
 
-</shape>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_below="@+id/checklayout">
+
+
+
+
+
+
+                <ImageButton
+                    android:id="@+id/user_thumbnail"
+                    style="@style/Widget.AppCompat.ImageButton"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/profile_circular_border_imageview"
+                    android:elevation="5dp"
+                    android:padding="20dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/profileholder"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="45dp" />
+
+
+
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/layout2"
+                    android:layout_width="368dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/user_thumbnail"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="188dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="0dp">
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="20"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:background="@color/colorAccent"
+                        android:paddingLeft="10dp"
+                        android:text="Person Name"
+                        android:textSize="24sp"
+                        tools:layout_editor_absoluteX="84dp"
+                        tools:layout_editor_absoluteY="98dp" />
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/layout3"
+                    android:layout_width="368dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    android:layout_below="@+id/layout2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/cont1">
+
+                            <TextView
+                                android:id="@+id/admissionNumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+                                android:textColor="@color/colorPrimaryDark"
+                                android:paddingLeft="10dp"
+                                android:text="Admission No"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp" />
+
+                            <TextView
+                                android:id="@+id/addno"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+                                android:paddingLeft="10dp"
+                                android:text="1234"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp"
+                                android:layout_marginLeft="187dp"
+                                android:layout_marginStart="187dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                        >
+
+                            <TextView
+                                android:id="@+id/sex"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:paddingLeft="10dp"
+                                android:text="Sex"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp" />
+
+                            <TextView
+                                android:id="@+id/sexval"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+                                android:paddingLeft="10dp"
+                                android:text="F/M"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp"
+                                android:layout_marginLeft="187dp"
+                                android:layout_marginStart="187dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                        >
+
+                            <TextView
+                                android:id="@+id/school"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:paddingLeft="10dp"
+                                android:text="School"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp" />
+
+                            <TextView
+                                android:id="@+id/schoolval"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+                                android:paddingLeft="10dp"
+                                android:text="My school"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp"
+                                android:layout_marginLeft="187dp"
+                                android:layout_marginStart="187dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                        >
+
+                            <TextView
+                                android:id="@+id/stream"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:paddingLeft="10dp"
+                                android:text="Stream"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp" />
+
+                            <TextView
+                                android:id="@+id/streamval"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+                                android:paddingLeft="10dp"
+                                android:text="Scince/social"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp"
+                                android:layout_marginLeft="187dp"
+                                android:layout_marginStart="187dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/layout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/layout3"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true">
+
+
+
+                    <TextView
+                        android:id="@+id/score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:background="@color/colorAccent"
+                        android:ems="20"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:text="SCORE"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        tools:layout_editor_absoluteX="84dp"
+                        tools:layout_editor_absoluteY="98dp" />
+                </android.support.v7.widget.CardView>
+
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/scorecontainer"
+                    android:layout_width="368dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    android:layout_below="@+id/layout4"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/contentscore"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+                                android:textColor="@color/colorPrimaryDark"
+                                android:paddingLeft="10dp"
+                                android:text="Admission No"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp" />
+
+                            <TextView
+                                android:id="@+id/scorecontent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+
+                                android:paddingLeft="10dp"
+                                android:text="1234"
+                                android:textSize="15sp"
+                                tools:layout_editor_absoluteX="84dp"
+                                tools:layout_editor_absoluteY="98dp"
+                                android:layout_marginLeft="187dp"
+                                android:layout_marginStart="187dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_alignParentStart="true" />
+                        </RelativeLayout>
+
+
+
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/layout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/scorecontainer"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true">
+
+
+
+                    <TextView
+                        android:id="@+id/selecteduniv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:background="@color/colorAccent"
+                        android:ems="20"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:text="UNIVERSTY CHOICES"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        tools:layout_editor_absoluteX="84dp"
+                        tools:layout_editor_absoluteY="98dp" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/campuschoicecontainer"
+                    android:layout_width="368dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    android:layout_below="@+id/layout5"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/campuslistcontiner"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                        </RelativeLayout>
+
+                        <ListView
+                            android:id="@+id/universtylist"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/layout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@+id/campuschoicecontainer"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true">
+
+
+
+                    <TextView
+                        android:id="@+id/selectedfield"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center"
+                        android:background="@color/colorAccent"
+                        android:ems="20"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:text="UNIVERSTY CHOICES"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        tools:layout_editor_absoluteX="84dp"
+                        tools:layout_editor_absoluteY="98dp" />
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/fieldchoice"
+                    android:layout_width="368dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="20dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="0dp"
+                    android:layout_below="@+id/layout6"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                        </RelativeLayout>
+
+                        <ListView
+                            android:id="@+id/fieldlistcontiner"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

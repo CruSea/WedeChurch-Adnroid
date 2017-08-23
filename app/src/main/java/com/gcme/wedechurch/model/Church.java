@@ -1,15 +1,17 @@
 package com.gcme.wedechurch.model;
 
-import android.support.annotation.Keep;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Unique;
 
 /**
  * Created by kzone on 2/4/2017.
  */
 
-@Keep
-public class Church extends SugarRecord<Church> {
+
+public class Church extends SugarRecord {
+
+    @Unique
     private int sirid;
     private String churchName;
     private String country;
@@ -25,8 +27,29 @@ public class Church extends SugarRecord<Church> {
     private String logo;
     private String parentChurchId;
     private String state;
-    Denomination denomination;
-    Schedule schedule;
+
+    public Church() {
+    }
+
+    public Church(int sirid, String churchName, String country, String cities, String location, String latitude, String longitude, String phone, String webUrl, String groupId, String banner, String description, String logo, String parentChurchId, String state) {
+        this.sirid = sirid;
+        this.churchName = churchName;
+        this.country = country;
+        this.cities = cities;
+        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.phone = phone;
+        this.webUrl = webUrl;
+        this.groupId = groupId;
+        this.banner = banner;
+        this.description = description;
+        this.logo = logo;
+        this.parentChurchId = parentChurchId;
+        this.state = state;
+    }
+
+
 
 
     public int getsirId() {
@@ -149,19 +172,6 @@ public class Church extends SugarRecord<Church> {
         this.state = state;
     }
 
-    public Denomination getDenomination() {
-        return denomination;
-    }
+    Fav fav;
 
-    public void setDenomination(Denomination denomination) {
-        this.denomination = denomination;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
 }
